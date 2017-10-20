@@ -1,0 +1,31 @@
+{% extends 'rang/base1.html' %}
+
+{% load staticfiles %}
+
+
+{% block title_block %}
+Rango
+{% endblock %}
+
+{% block body_block %}
+    <div>
+    {% if delegations %}
+    <ul>
+        {% for delegation in delegations %}
+        <li>
+            <a  href="{%url 'rango:DelegationProcess' delegation%}">{{delegation}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <strong> There are no delegation present. </strong>
+    {% endif %}
+    </div>
+
+
+{% endblock %}
+
+
+
+            <!--<a href = "{%url 'rango:DelegationProcess' delegation.slug%}"> {{delegation.title}} </a>
+               #.name+delegation.time_leave.strftime('%Y-%m-%d')+delegation.Members.all.name}}</a> -->

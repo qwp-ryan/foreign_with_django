@@ -1,0 +1,29 @@
+{% extends 'rang/base1.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{delegation.title}}
+{% endblock %}
+
+{% block body_block %}
+    {% if delegation %}
+    <!--        <h1>{{ category.name }}</h1>  -->
+        <strong><li>{{delegation.time_leave}}</li></strong>
+        {% if delegation.Members %}
+            <ul>
+                {% for member in delegation.Members %}
+                    <li>{{member.name}}</li>
+                {% endfor %}
+                {% for country in delegation.country %}
+                    <li>{{country.name}}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No pages currently in category.</strong>
+        {% endif %}
+        <a href="{% url 'rango:add_page' category.slug %}">Add a Page</a>
+    {% else %}
+        The specified category does note exist!
+    {% endif %}
+{% endblock %}
+

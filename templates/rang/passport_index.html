@@ -1,0 +1,40 @@
+{% extends 'rang/base1.html' %}
+
+{% load staticfiles %}
+
+
+{% block title_block %}
+Passport
+{% endblock %}
+
+{% block body_block %}
+    <h1> Passport Index </h1>
+    <div>
+        {% if user.is_authenticated %}
+        Hellow {{user.username}}!
+        {% else %}
+        Hi!
+        {% endif %}
+        <br /> </div>
+
+    <div>
+    {% if passports %}
+    <ul>
+        {% for passport in passports %}
+        <li>
+            <strong>{{passport.name}}</strong>
+            <a href = "{%url 'rango:show_passport' passport.passport_number %}">{{passport.passport_number}}</a>
+            {% for visa in visas %}
+            <strong>{{visa.country}}</strong>
+            <!-- passport_number是否不大合适？应该时人名+passport_number -->
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% else %}
+        <strong> There are no passport present. </strong>
+    {% endif %}
+    </div>
+
+
+{%endblock%}
