@@ -165,8 +165,8 @@ def populate_country_city():
 
 if __name__ == '__main__':
     print ("Starting Rango population script ...")
-#    populate()
-#    populateforeign()
+    populate()
+    populateforeign()
     pupulate_passport()
     populate_visa()
     populate_country_city()

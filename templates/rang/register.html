@@ -11,10 +11,10 @@ Register of Rango
     <h1>About Page</h1>
     {% if registered %}
         Rango says: <strong> thank you very much for registering!</strong>
-        <a href="{%url 'rango:index' %}">Return to the homepage</a><br />
+        <a href="{%url 'Foreign_App:index' %}">Return to the homepage</a><br />
     {% else %}
-        <a href="{%url 'rango:index' %}">Rango</a> says: <strong> register here! </strong> <br />
-        <form id="user_form" method="POST" action="{%url 'rango:register' %}"
+        <a href="{%url 'Foreign_App:index' %}">Rango</a> says: <strong> register here! </strong> <br />
+        <form id="user_form" method="POST" action="{%url 'Foreign_App:register' %}"
               enctype="multipart/form-data">
             {% csrf_token %}
             {{user_form.as_p}}

@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # different operation systerm should use abspath
 #BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-RANGO_DIR= os.path.join(BASE_DIR, 'rango')
+RANGO_DIR= os.path.join(BASE_DIR, 'Foreign_App')
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rango',
+    'Foreign_App',
 #    'registration',
 ]
 
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'my_rango.urls'
+ROOT_URLCONF = 'foreign_with_django.urls'
 
 TEMPLATES = [
     {
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'my_rango.wsgi.application'
+WSGI_APPLICATION = 'foreign_with_django.wsgi.application'
 
 
 # Database
@@ -148,8 +148,8 @@ ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 # LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'
-REGISTRATION_DEFAULT_FROM_EMAIL = 'bifrost_xin@163.com'
-EMAIL_HOST = 'smtp.163.com'
+REGISTRATION_DEFAULT_FROM_EMAIL = 'qwpsinapsdu@aliyun.com'
+EMAIL_HOST = 'smtp.aliyun.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'bifrost_xin@163.com'
-EMAIL_HOST_PASSWORD='test12345'
+EMAIL_HOST_USER = 'qwpsinapsdu@aliyun.com'
+EMAIL_HOST_PASSWORD='qwp811020'
