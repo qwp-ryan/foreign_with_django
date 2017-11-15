@@ -7,7 +7,7 @@
 
 {% block body_block %}
     {% if delegation %}
-    <!--        <h1>{{ category.name }}</h1>  -->
+
         <strong><li>{{delegation.time_leave}}</li></strong>
         {% if delegation.Members %}
             <ul>
@@ -18,12 +18,10 @@
                     <li>{{country.name}}</li>
                 {% endfor %}
             </ul>
-        {% else %}
-            <strong>No pages currently in category.</strong>
-        {% endif %}
-        <a href="{% url 'Foreign_App:add_page' category.slug %}">Add a Page</a>
+
+
     {% else %}
-        The specified category does note exist!
+        The specified delegation does note exist!
     {% endif %}
 {% endblock %}
 

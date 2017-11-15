@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 app_name='Foreign_App'
 urlpatterns = [
     url(r'^$',views.index, name='index' ),
-    url(r'^index/',views.index, name='index' ),
+    url(r'^index/',views.ShowDelegation, name='index' ),
+    url(r'^delegation/(?P<category_name_slug>[\w\-]+)/$',views.delegationprocess,name='delegationprocess'),
 #    url(r'^passport_index/',views.passport_index, name='passport_index' ),
     url(r'^about/', views.about, name='about'),
     url(r'^add_category/$',views.add_category, name='add_category'),

@@ -24,6 +24,7 @@ def DelegationProcess(Request, delegation):
     names = []
     passport = []
     country_names = []
+    members=[]
 
     try:
         Deleg = Delegation.objects.get(delegation=delegation)
