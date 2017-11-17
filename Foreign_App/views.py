@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, reverse
 from .models import Category, Page
 from .models import PassportInformation, VisaInformation, PersonalInformation
-from .forms import PassportInformationForm, VisaInformationForm, PersonalInfromationForm
+from .forms import PassportInformationForm, VisaInformationForm, PersonalInformationForm
 from .forms import CategoryForm, PageForm
 from .forms import UserForm, UserProfileForm
 from django.http import HttpResponseRedirect, HttpResponse
@@ -15,7 +15,7 @@ from django.contrib.auth import logout
 from datetime import datetime
 
 
-def delegationprocess(Request, delegation):
+def delegationprocess(Request, delegation_sign):
     # 这个view想要把一个团组的整个申请填报流程都展现出来，每一步的信息全都表现出来。
     context_dict = {}
     names = []
@@ -24,13 +24,13 @@ def delegationprocess(Request, delegation):
     members = []
 
     try:
-        Deleg = Delegation.objects.get(delegation=delegation)
+        Deleg = Delegation.objects.get(sign=delegation_sign)
         for men in Deleg.Members.all():
             names.append(men.name)
-        for countries in Delegation.country():
+        for countries in Deleg.country.all():
             country_names.append(countries.name)
 
-        members.append(Delegation.Members.objects.filter())
+        # members.append(Delegation.Members.objects.filter())
         #        for members in Deleg.Members:
         #            passport.append(PassportInformation.object.filter(person=members))
         #        visa = VisaInformation.object.filter(Passport=passport)
@@ -224,6 +224,19 @@ def person_index(Request):
     context_dict = {'Persons':Person_list}
     response = render(Request,'rang/index_1.html',context_dict)
     return response
+
+
+def add_person(Request):
+    form = PersonalInformationForm()
+    if Request.method == "POST":
+        form = PersonalInformationForm(Request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return index(Request)
+        else:
+            print(form.errors)
+    return render(Request, 'rang/add_person.html',{'form':form})
+
 
 
 def show_passport(request, Id_num):
