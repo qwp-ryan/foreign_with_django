@@ -2,24 +2,19 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    {{person.sign}}
+    Person list
 {% endblock %}
 
 {% block body_block %}
-    {% if person %}
-<!--        <h1>{{ person.sign }}</h1>  -->
-        {% if Person_list %}
-            <ul>
-                {% for person in Person_list %}
-                    <li><a href="{{Person.url}}">{{person.sign}}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>No passport currently belongs to this person.</strong>
-        {% endif %}
-        <a href="{% url 'rango:add_person'  %}">Add a person</a>
+    {% if Person_list %}
+        <ul>
+            {% for person in Person_list %}
+                <li><a href="{{Person.url}}">{{person.sign}}</a></li>
+            {% endfor %}
+        </ul>
     {% else %}
-        The specified person does note exist!
+        <strong>No passport currently belongs to this person.</strong>
     {% endif %}
+        <a href="{% url 'rango:add_person' %}">Add a person</a>
 {% endblock %}
 

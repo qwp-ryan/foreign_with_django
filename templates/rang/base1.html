@@ -35,7 +35,7 @@
                 {% if user.is_authenticated %}
                 <li><a href="{%url 'Foreign_App:restricted'%}">Restricted Page</a></li>
                 <li><a href="{%url 'Foreign_App:logout' %}">Logout</a></li>
-                <li><a href="{%url 'Foreign_App:add_category'%}">Add New Category </a></li>
+                <li><a href="{%url 'Foreign_App:add_person'%}">Add New Profile of a person </a></li>
                 {% else %}
                 <li><a href="{%url 'Foreign_App:login' %}">Sign In</a></li>
                 <li><a href="{%url 'Foreign_App:register'%}">Sign Up</a></li>

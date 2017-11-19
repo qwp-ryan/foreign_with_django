@@ -2,20 +2,20 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    {{person.sign}}
+    {{passport.passport_number}}
 {% endblock %}
 
 {% block body_block %}
-    {% if person %}
-        <h1>{{ person.sign }}</h1>
+    {% if passport %}
+        <h1>{{ passport.passport_number }}</h1>
             <h3>
-               {% for iterm in person %}
+               {% for iterm in passport %}
                 {item}
             </h3>
         {% if passport %}
             <ul>
-                {% for passport in passports %}
-                    <li><a href="{%url 'Foreign_App:show_passport' passport.passport_number %}">{{passport.passport_number}}</a></li>
+                {% for visa in visas %}
+                    <li><a href="{%url 'Foreign_App:show_visa' visa.passport_number %}">{{passport.passport_number}}</a></li>
                 {% endfor %}
             </ul>
         {% else %}

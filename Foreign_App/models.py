@@ -93,9 +93,11 @@ class VisaInformation(models.Model):
     expire_date = models.DateField(verbose_name='过期日期', null=True, blank=True)
     visa_class = models.CharField(verbose_name='签证类型', choices=visa_choices, max_length=1)
     visa_file = models.FileField(verbose_name='签证扫描件', upload_to='upload/%Y/%M/')
+    sign = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
-        return self.country
+        self.sign = self.country + '-' + self.issue_date.strftime('%Y-%m-%d')
+        return self.sign
 
 
 class CountryInformation(models.Model):
