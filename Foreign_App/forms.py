@@ -96,13 +96,17 @@ class PersonalInformationForm(forms.ModelForm):
 
 
 class PassportInformationForm(forms.ModelForm):
-    Passport_number = forms.CharField(label='护照号码', max_length=15)
-    date_issue = forms.DateField(label='颁发日期')
-    date_expire = forms.DateField(label='过期日期')
-    issue_office = forms.CharField(label='发证机关', max_length=15)
-    issue_place = forms.CharField(label='发证地点', max_length=15)
-    date_out = forms.DateField(label='借出日期')
-    date_back = forms.DateField(label='归还日期')
+    Passport_number = forms.CharField(help_text='护照号码', max_length=15)
+    date_issue = forms.DateField(help_text='颁发日期')
+    date_expire = forms.DateField(help_text='过期日期')
+    issue_office = forms.CharField(help_text='发证机关', max_length=15)
+    issue_place = forms.CharField(help_text='发证地点', max_length=15)
+    date_out = forms.DateField(help_text='借出日期')
+    date_back = forms.DateField(help_text='归还日期')
+
+    class Meta:
+        model = PassportInformation
+        exclude = ('person',)
 
 
 class VisaInformationForm(forms.ModelForm):

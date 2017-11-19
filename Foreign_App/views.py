@@ -220,9 +220,9 @@ def visitor_cookie_handler(request,response):
 
 
 def person_index(Request):
-    Person_list = PersonalInformation.objects.order_by('name')[:]
+    Person_list = PersonalInformation.objects.all('sign')[:]
     context_dict = {'Persons':Person_list}
-    response = render(Request,'rang/index_1.html',context_dict)
+    response = render(Request,'rang/Person_list.html',context_dict)
     return response
 
 
@@ -236,6 +236,22 @@ def add_person(Request):
         else:
             print(form.errors)
     return render(Request, 'rang/add_person.html',{'form':form})
+
+
+def add_passport(Request,person_sign):
+    try:
+        person=PersonalInformation.objects.get(sign=person_sign)# 不唯一，希望使用姓名，生日，出生地三者同时作为评价标准
+    except PersonalInformation.DoesNotExist:
+        person = None
+    form = PassportInformationForm()
+    if Request.method == 'POST':
+        form = PassportInformationForm(Request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return index(Request)
+        else:
+            print(form.errors)
+    return render(Request, 'rang/add_passport.html',{'form':form})
 
 
 
@@ -264,19 +280,7 @@ def show_visa(request, passport_number):
     return render(request,'rang/passport.html', context_dict)
 
 
-def add_passport(request):
-    form = PassportInformationForm()
 
-    if request.method == 'POST':
-        form = PassportInformationForm(request.POST)
-
-        if form.is_valid():
-            cat=form.save(commit=True)
-            return index(request)
-        else:
-            print(form.errors)
-
-    return render(request,'rang/add_passport.html',{'form':form})
 
 
 def add_visa(request, passport_number):

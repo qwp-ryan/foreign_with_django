@@ -1,0 +1,25 @@
+{% extends 'rang/base1.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    {{person.sign}}
+{% endblock %}
+
+{% block body_block %}
+    {% if person %}
+<!--        <h1>{{ person.sign }}</h1>  -->
+        {% if passport %}
+            <ul>
+                {% for passport in passports %}
+                    <li><a href="{{passport.url}}">{{passport.title}}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No passport currently belongs to this person.</strong>
+        {% endif %}
+        <a href="{% url 'rango:add_passport' person.sign %}">Add a Passport</a>
+    {% else %}
+        The specified person does note exist!
+    {% endif %}
+{% endblock %}
+
