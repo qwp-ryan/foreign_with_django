@@ -90,6 +90,7 @@ def populateforeign():
         p0.status_health = row.status_health
         p0.emergency_contact_name = row.emergency_contact_name
         p0.emergency_contact_tel = row.emergency_contact_tel
+        p0.sign = row['name']+'-'+row.place_birth+'-'+row.date_birth.strftime('%Y-%m-%d')
         p0.save()
         print(" %d person is saved" %(index))
     return
@@ -130,6 +131,7 @@ def populate_visa():
                 p2.issue_date = row2.issue_date
                 p2.expire_date = row2.expire_date
                 p2.visa_type = row2.visa_type
+                p2.visa_sign = p2.passport_number+'-'+row2.country+'-'+row2.issue_date.strftime('%Y-%m-%d')
                 #p2.visafile = row2.visafile
                 p2.save()
                 print(" %d visas are saved" % (index2))

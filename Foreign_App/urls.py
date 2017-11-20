@@ -20,16 +20,19 @@ from django.conf.urls.static import static
 
 app_name='Foreign_App'
 urlpatterns = [
+    url(r'^about/', views.about, name='about'),
+    url(r'^add_category/$', views.add_category, name='add_category'),
+    url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page/$', views.add_page, name='add_page'),
+    url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.show_category, name='show_category'),
+
     url(r'^$',views.index, name='index' ),
     url(r'^index/',views.ShowDelegation, name='index' ),
     url(r'^delegation/(?P<delegation_sign>[\w\-]+)/$',views.delegationprocess,name='delegationprocess'),
-#    url(r'^passport_index/',views.passport_index, name='passport_index' ),
-    url(r'^about/', views.about, name='about'),
-    url(r'^add_category/$',views.add_category, name='add_category'),
+
     url(r'^add_person/$',views.add_person, name='add_person'),
-    url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page/$',views.add_page, name='add_page'),
-    url(r'^category/(?P<category_name_slug>[\w\-]+)/$', views.show_category,name='show_category'),
-#    url(r'^person_index/', views.person_list, name='person_list'),
+    url(r'^person_list/(?P<persion_sign>[\w\-]+)/add_passport/$',views.add_passport, name='add_passport'),
+    url(r'^person_list/(?P<persion_sign>[\w\-]+)/(?P<passport_number>[\w\-]+)$',views.add_visa, name='add_visa'),
+
     url(r'^register/$',views.register,name='register'),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^restricted/', views.restricted, name='restricted'),

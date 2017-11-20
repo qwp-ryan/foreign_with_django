@@ -65,16 +65,19 @@ class PersonalInformation(models.Model):
     emergency_contact_tel = models.CharField(verbose_name='紧急联系人电话', max_length=11)
     sign = models.CharField(max_length=100, unique=True)
 
-    def __str__(self):
+    def save(self, *args, ** kwargs):
+        self.sign = self.name + '-' + self.Place_of_Birth + '-' + self.Date_of_Birth.strftime('%Y-%m-%d')
+        super(PersonalInformation, self).save(*args, **kwargs)
 
-        self.sign = self.name+'-'+self.Place_of_Birth+'-'+self.Date_of_Birth.strftime('%Y-%m-%d')  #self.country[0]+self.Members[0]+
+    def __str__(self):
+          #self.country[0]+self.Members[0]+
         #return self.slug  错误的，另一个函数中定义的，这个不能用。
         return self.sign
 
 
 class PassportInformation(models.Model):
     person = models.ForeignKey(PersonalInformation, on_delete=models.CASCADE)
-    passport_number = models.CharField(verbose_name='护照号码', max_length=15)
+    passport_number = models.CharField(verbose_name='护照号码', max_length=15, unique=True)
     date_issue = models.DateField(verbose_name='颁发日期', null=True, blank=True)
     date_expire = models.DateField(verbose_name='过期日期', null=True, blank=True)
     issue_office = models.CharField(verbose_name='发证机关', max_length=15)
@@ -96,7 +99,7 @@ class VisaInformation(models.Model):
     sign = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
-        self.sign = self.country + '-' + self.issue_date.strftime('%Y-%m-%d')
+        self.sign = self.Passport+'-'+self.country + '-' + self.issue_date.strftime('%Y-%m-%d')
         return self.sign
 
 

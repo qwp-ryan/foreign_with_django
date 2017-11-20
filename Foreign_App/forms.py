@@ -88,7 +88,7 @@ class PersonalInformationForm(forms.ModelForm):
                 'securety',
                 'status_health',
                 'emergency_contact_name',
-                'emergency_contact_tel')
+                'emergency_contact_tel',)
 
 
 
@@ -110,12 +110,17 @@ class PassportInformationForm(forms.ModelForm):
 
 
 class VisaInformationForm(forms.ModelForm):
-    # visa_choices = (
-    #     ('A', '一次入境签证'),
-    #     ('B', '多次入境签证'),
-    # )
+
     country = forms.CharField(label='国家', max_length=20)
     issue_date = forms.DateField(label='颁发日期')
     expire_date = forms.DateField(label='过期日期')
     visa_class = forms.ChoiceField(label='签证类型', choices=visa_choices)
     visa_file = forms.FileField(label='签证扫描件')
+
+    class Meta:
+        model = VisaInformation
+        fields = ('country',
+                 'issue_date',
+                 'expire_date',
+                 'visa_class',
+                 'visa_file',)
