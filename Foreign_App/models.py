@@ -70,7 +70,7 @@ class PersonalInformation(models.Model):
         super(PersonalInformation, self).save(*args, **kwargs)
 
     def __str__(self):
-        self.sign = self.name + '-' + self.Place_of_Birth + '-' + self.Date_of_Birth.strftime('%Y-%m-%d')
+#        self.sign = self.name + '-' + self.Place_of_Birth + '-' + self.Date_of_Birth.strftime('%Y-%m-%d')
           #self.country[0]+self.Members[0]+
         #return self.slug  错误的，另一个函数中定义的，这个不能用。
         return self.sign

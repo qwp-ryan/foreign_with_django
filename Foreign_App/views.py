@@ -232,10 +232,31 @@ def add_person(Request):
         form = PersonalInformationForm(Request.POST)
         if form.is_valid():
             form.save(commit=True)
-            return index(Request)
+            return person_index(Request)
         else:
             print(form.errors)
     return render(Request, 'rang/add_person.html',{'form':form})
+
+
+def person_detail(Request, person_sign):
+    person = PersonalInformation.objects.get(sign=person_sign)
+    return render(Request, 'rang/detail.html', person)
+
+
+def show_visa(Request, person_sign):
+    form = PersonalInformationForm()
+
+    if Request.method == 'POST':
+        form = CategoryForm(Request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return person_index(Request)
+        else:
+            print(form.errors)
+
+    return render(Request, 'rang/add_person.html', {'form': form})
+
 
 
 def add_passport(Request,person_sign):
