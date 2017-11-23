@@ -70,6 +70,7 @@ class PersonalInformation(models.Model):
         super(PersonalInformation, self).save(*args, **kwargs)
 
     def __str__(self):
+        self.sign = self.name + '-' + self.Place_of_Birth + '-' + self.Date_of_Birth.strftime('%Y-%m-%d')
           #self.country[0]+self.Members[0]+
         #return self.slug  错误的，另一个函数中定义的，这个不能用。
         return self.sign
@@ -90,16 +91,22 @@ class PassportInformation(models.Model):
 
 
 class VisaInformation(models.Model):
-    Passport = models.ForeignKey(PassportInformation)
+    passport_number = models.ForeignKey(PassportInformation, on_delete=models.CASCADE, to_field='passport_number')
     country = models.CharField(verbose_name='国家', max_length=20)
     issue_date = models.DateField(verbose_name='颁发日期', null=True, blank=True)
     expire_date = models.DateField(verbose_name='过期日期', null=True, blank=True)
     visa_class = models.CharField(verbose_name='签证类型', choices=visa_choices, max_length=1)
-    visa_file = models.FileField(verbose_name='签证扫描件', upload_to='upload/%Y/%M/')
+    visa_file = models.FileField(verbose_name='签证扫描件', upload_to='upload/%Y/%M/', null=True, blank=True)
     sign = models.CharField(max_length=100, unique=True)
 
+    def save(self, *args, ** kwargs):
+        self.sign = self.Passport.all()[0].passport_number + '-' + self.country + '-' + self.issue_date.strftime(
+            '%Y-%m-%d')
+        super(VisaInformation, self).save(*args, **kwargs)
+
     def __str__(self):
-        self.sign = self.Passport+'-'+self.country + '-' + self.issue_date.strftime('%Y-%m-%d')
+        self.sign = self.Passport.all()[0].passport_number + '-' + self.country + '-' + self.issue_date.strftime(
+            '%Y-%m-%d')
         return self.sign
 
 

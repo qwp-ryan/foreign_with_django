@@ -6,15 +6,15 @@
 {% endblock %}
 
 {% block body_block %}
-    {% if Person_list %}
+    {% if Persons %}
         <ul>
-            {% for person in Person_list %}
+            {% for person in Persons %}
                 <li><a href="{{Person.url}}">{{person.sign}}</a></li>
             {% endfor %}
         </ul>
     {% else %}
         <strong>No passport currently belongs to this person.</strong>
     {% endif %}
-        <a href="{% url 'rango:add_person' %}">Add a person</a>
+        <a href="{% url 'Foreign_App:add_person' %}">Add a person</a>
 {% endblock %}
 

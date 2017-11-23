@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^delegation/(?P<delegation_sign>[\w\-]+)/$',views.delegationprocess,name='delegationprocess'),
 
     url(r'^add_person/$',views.add_person, name='add_person'),
+    url(r'^person_list/$',views.person_index, name='person_list'),
     url(r'^person_list/(?P<persion_sign>[\w\-]+)/add_passport/$',views.add_passport, name='add_passport'),
     url(r'^person_list/(?P<persion_sign>[\w\-]+)/(?P<passport_number>[\w\-]+)$',views.add_visa, name='add_visa'),
 

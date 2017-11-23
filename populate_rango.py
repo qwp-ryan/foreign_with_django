@@ -125,7 +125,7 @@ def populate_visa():
     for p1 in PassportInformation.objects.all():
         for index2, row2 in pf2[2].iterrows():
             if p1.passport_number == row2['passport_number']:
-                p2 = VisaInformation.objects.get_or_create(Passport=p1,country=row2.country,issue_date=row2.issue_date)[0]
+                p2 = VisaInformation.objects.get_or_create(passport_number=p1,country=row2.country,issue_date=row2.issue_date)[0]
                 p2.passport_number = row2['passport_number']
                 p2.country = row2.country
                 p2.issue_date = row2.issue_date
@@ -170,7 +170,7 @@ if __name__ == '__main__':
     populate()
     populateforeign()
     pupulate_passport()
-    populate_visa()
+#    populate_visa()
     populate_country_city()
 
 

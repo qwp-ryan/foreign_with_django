@@ -220,7 +220,7 @@ def visitor_cookie_handler(request,response):
 
 
 def person_index(Request):
-    Person_list = PersonalInformation.objects.all('sign')[:]
+    Person_list = PersonalInformation.objects.all()
     context_dict = {'Persons':Person_list}
     response = render(Request,'rang/Person_list.html',context_dict)
     return response
