@@ -31,10 +31,10 @@ urlpatterns = [
 
     url(r'^add_person/$',views.add_person, name='add_person'),
     url(r'^person_list/$',views.person_index, name='person_list'),
-    url(r'^person_list/(?P<persion_sign>[\w\-]+)$',views.person_detail, name='personal_profile'),
-    url(r'^person_list/(?P<persion_sign>[\w\-]+)/add_passport/$',views.add_passport, name='add_passport'),
-    url(r'^person_list/(?P<persion_sign>[\w\-]+)/(?P<passport_number>[\w\-]+)$',views.show_visa, name='visainformation'),
-    url(r'^person_list/(?P<persion_sign>[\w\-]+)/(?P<passport_number>[\w\-]+)/add_visa$',views.add_visa, name='add_visa'),
+    url(r'^person_list/(?P<person_sign>[\w\-]+)$',views.person_detail, name='person_detail'),
+    url(r'^person_list/(?P<person_sign>[\w\-]+)/add_passport/$',views.add_passport, name='add_passport'),
+    url(r'^person_list/(?P<person_sign>[\w\-]+)/(?P<passport_number>[\w\-]+)$',views.show_visa, name='visainformation'),
+    url(r'^person_list/(?P<person_sign>[\w\-]+)/(?P<passport_number>[\w\-]+)/add_visa$',views.add_visa, name='add_visa'),
 
     url(r'^register/$',views.register,name='register'),
     url(r'^login/$', views.user_login, name='login'),

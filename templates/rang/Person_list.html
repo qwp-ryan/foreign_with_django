@@ -9,7 +9,7 @@
     {% if Persons %}
         <ul>
             {% for person in Persons %}
-                <li><a href="{{Person.url}}">{{person.sign}}</a></li>
+                <li><a href="{% url 'Foreign_App:person_detail' person.sign %}">{{person.sign}}</a></li>
             {% endfor %}
         </ul>
     {% else %}

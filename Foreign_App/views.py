@@ -239,8 +239,8 @@ def add_person(Request):
 
 
 def person_detail(Request, person_sign):
-    person = PersonalInformation.objects.get(sign=person_sign)
-    return render(Request, 'rang/detail.html', person)
+    person = PersonalInformation.objects.filter(sign=person_sign).values()
+    return render(Request, 'rang/detail.html', {'person':person}, person_sign)
 
 
 def show_visa(Request, person_sign):
@@ -259,7 +259,7 @@ def show_visa(Request, person_sign):
 
 
 
-def add_passport(Request,person_sign):
+def add_passport(Request, person_sign):
     try:
         person=PersonalInformation.objects.get(sign=person_sign)# 不唯一，希望使用姓名，生日，出生地三者同时作为评价标准
     except PersonalInformation.DoesNotExist:

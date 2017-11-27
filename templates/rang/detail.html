@@ -1,15 +1,24 @@
+{% extends 'rang/base1.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Person list
+{% endblock %}
+
+{% block body_block %}
+
 <ul>
     {% if person %}
+
         {% for c in person %}
-            {% if c == act_cat %}
                 <li>
-                    <strong><a href="{%url 'rango:show_category' c.slug%}">{{c.name}}</a></strong>
+                    <strong> {{c}} </strong>
                 </li>
-            {% else%}
-                <li><a href="{%url 'rango:show_category' c.slug%}">{{c.name}}</a></li>
-            {%endif%}
         {% endfor %}
+        <li><a href="{% url 'Foreign_App:add_passport' person_sign %}"> person_sign </a></li>
     {% else %}
         <li> <strong>There are no information of this person.</strong></li>
     {% endif %}
 </ul>
+
+{% endblock %}
